@@ -4,14 +4,17 @@
 <h1>Finch List</h1>
 
 {% for finch in finches %}
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ finch.species }}</span>
-      <p>Color: {{ finch.color }}</p>
-      <p>Description: {{ finch.description }}</p>
-      <p>Location: {{ finch.location }}</p>
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ finch.species }}</span>
+            <p>Color: {{ finch.color }}</p>
+            <p>Description: {{ finch.description }}</p>
+            <p>Location: {{ finch.location }}</p>
+        </div>
+        <!-- <a href="/finches/{{ finch.id }}">View {{ finch.species }}</a> -->
+        <!-- Theres a better way django has -->
+        <a href="{% url 'detail' finch.id %}">View {{ finch.species }}</a>
     </div>
-  </div>
 {% endfor %}
 
 {% endblock %}
