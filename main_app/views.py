@@ -1,18 +1,22 @@
 from django.shortcuts import render
+# import models here
+from .models import Finch
 
 # temporary finches
-finches = [
-    {
-        'species': 'American Goldfinch', 
-        'description': 'The American goldfinch is a small North American bird in the finch family', 
-        'location': "North America"
-    },
-    {
-        'species': 'Brambling', 
-        'description': 'The brambling is a small passerine bird in the finch family', 
-        'location': "widespread"
-    },
-]
+# finches = [
+#     {
+#         'species': 'American Goldfinch',
+#         'color': 'yellow and black',
+#         'description': 'The American goldfinch is a small North American bird in the finch family', 
+#         'location': "North America"
+#     },
+#     {
+#         'species': 'Brambling',
+#         'color': 'tan and white with black', 
+#         'description': 'The brambling is a small passerine bird in the finch family', 
+#         'location': "widespread"
+#     },
+# ]
 
 # Create your views here.
 
@@ -26,5 +30,5 @@ def about(request):
 
 # Finches index view
 def finches_index(request):
-  # We pass data to a template very much like we did in Express!
+  finches = Finch.objects.all()
   return render(request, 'finches/index.html', { 'finches': finches })
