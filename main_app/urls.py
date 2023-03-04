@@ -12,7 +12,9 @@ urlpatterns = [
     path('finches/<int:finch_id>/add_siting/', views.add_siting, name='add_siting'),
     path('finches/<int:finch_id>/', views.finch_detail, name='detail'),
     # add association
+    path('finches/<int:finch_id>/assoc_food/<int:food_id>/', views.assoc_food, name='assoc_food'),
     # add unassociation
+    path('finches/<int:finch_id>/unassoc_food/<int:food_id>/', views.unassoc_food, name='unassoc_food'),
     # food routes
     path('foods/', views.FoodList.as_view(), name='foods_index'),
     path('foods/create/', views.FoodCreate.as_view(), name='foods_create'),

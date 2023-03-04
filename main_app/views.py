@@ -41,9 +41,13 @@ def finches_index(request):
 def finch_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
 
+    id_list = finch.foods.all().values_list('id')
+
+    foods_finch_doesnt_have = Food.objects.exclude(id__in=id_list)
+
     siting_form = SitingForm()
 
-    return render(request, 'finches/detail.html', { 'finch': finch, 'siting_form': siting_form })
+    return render(request, 'finches/detail.html', { 'finch': finch, 'siting_form': siting_form, 'foods': foods_finch_doesnt_have })
 
 def add_siting(request, finch_id):
     form = SitingForm(request.POST)
@@ -52,6 +56,14 @@ def add_siting(request, finch_id):
         new_siting = form.save(commit=False)
         new_siting.finch_id = finch_id
         new_siting.save()
+    return redirect('detail', finch_id=finch_id)
+
+def assoc_food(request, finch_id, food_id):
+    Finch.objects.get(id=finch_id).foods.add(food_id)
+    return redirect('detail', finch_id=finch_id)
+
+def unassoc_food(request, finch_id, food_id):
+    Finch.objects.get(id=finch_id).foods.remove(food_id)
     return redirect('detail', finch_id=finch_id)
 
 class FinchCreate(CreateView):
