@@ -10,5 +10,9 @@
         <p>Description: {{ finch.description | linebreaks }}</p>
         <p>Location: {{ finch.location }}</p>
     </div>
+    <div class="card-action">
+        <a href="{% url 'finches_update' finch.id %}" class="btn blue">Edit</a>
+        <a href="{% url 'finches_delete' finch.id %}" class="btn red">Delete</a>
+    </div>
 </div>
 {% endblock %}
