@@ -14,3 +14,12 @@ class Finch(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={ 'finch_id': self.id })
+    
+class Siting(models.Model):
+    date = models.DateField('siting date')
+    location = models.CharField(max_length=100)
+
+    finch = models.ForeignKey(Finch, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f"{self.get_location_display()} on {self.date}"
