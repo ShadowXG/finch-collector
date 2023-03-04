@@ -2,6 +2,15 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
+class Food(models.Model):
+    name = models.CharField(max_length=50)
+    attracted_birds = models.TextField(max_length=250)
+
+    def __str__(self) -> str:
+        return f"{self.name} is eaten by {self.attracted_birds}"
+    
+    def get_absolute_url(self):
+        return reverse('foods_detail', kwargs={'pk': self.id})
 
 class Finch(models.Model):
     species = models.CharField(max_length=100)
@@ -23,3 +32,6 @@ class Siting(models.Model):
 
     def __str__(self):
         return f"{self.location} on {self.date}"
+    
+    class Meta:
+        ordering = ['-date']
