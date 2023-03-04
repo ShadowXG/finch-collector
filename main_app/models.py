@@ -21,5 +21,5 @@ class Siting(models.Model):
 
     finch = models.ForeignKey(Finch, on_delete=models.CASCADE)
 
-    def __str__(self) -> str:
-        return f"{self.get_location_display()} on {self.date}"
+    def __str__(self):
+        return f"{self.location} on {self.date}"
