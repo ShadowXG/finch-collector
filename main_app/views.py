@@ -108,4 +108,4 @@ class FoodUpdate(UpdateView):
 # FoodDelete
 class FoodDelete(DeleteView):
     model = Food
-    template_name = '/foods/'
+    template_name = 'foods/index.html'
